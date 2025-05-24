@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movies App</title>
+  <link rel="stylesheet" href="movies.css" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+  <div id="app" class="movies-app">
+    <h1>Movies Application</h1>
+    <div class="input-group">
+      <input type="text" v-model="title" placeholder="Enter movie title" @keyup.enter="getMovie" />
+      <button @click="getMovie">Search</button>
+    </div>
+    <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="movie" class="movie-info">
+      <h2>{{ movie.Title }} ({{ movie.Year }})</h2>
+      <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+      <p><strong>Director:</strong> {{ movie.Director }}</p>
+      <p><strong>Cast:</strong> {{ movie.Actors }}</p>
+      <p><strong>Plot:</strong> {{ movie.Plot }}</p>
+      <img :src="movie.Poster" alt="Movie Poster" v-if="movie.Poster !== 'N/A'" />
+    </div>
+  </div>
+  <script src="movies.js"></script>
+</body>
+</html>
